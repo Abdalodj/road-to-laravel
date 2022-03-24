@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('posts', function(){
+    return response()->json([
+        'title' => 'mon super titre',
+        'description' => 'ma super description'
+    ]);
+});
+
+Route::get('articles', function () {
+    return view('articles');
+});
