@@ -15,16 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('welcome');
-Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id')->name("posts");
+Route::get('/posts/create', [PostController::class, 'create'])->name("post.create");
+Route::post('/posts/create', [PostController::class, 'store'])->name("post.store");
+Route::get('/posts/update/{id}', [PostController::class, 'toUpdate'])->whereNumber('id')->name("post.update");
+Route::post('/posts/update/{id}', [PostController::class, 'update'])->whereNumber('id')->name("post.update");
+Route::get('/posts/{id}', [PostController::class, 'show'])->whereNumber('id')->name("post.show");
+Route::get('/posts/delete/{id}', [PostController::class, 'delete'])->whereNumber('id')->name("post.delete");
 Route::get('/contact', [PostController::class, 'contact'])->name('contact');
-
-/* Route::get('posts', function(){
-    return response()->json([
-        'title' => 'mon super titre',
-        'description' => 'ma super description'
-    ]);
-});
-
-Route::get('articles', function () {
-    return view('articles');
-}); */

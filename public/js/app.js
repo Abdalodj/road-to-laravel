@@ -2062,8 +2062,6 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-prompt("coucou");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
