@@ -4,6 +4,7 @@
         <div class="row gx-5 justify-content-lg-between">
             <div class="col-12 col-sm-10 col-md-7 col-lg-6">
                 <div class="row justify-content-center justify-content-lg-around">
+                    <img class="rounded" src="{{$post->image->path}}" alt="{{$post->title}}" width="300" height="400">
                     <h3 style="margin-bottom: 10px; color: #303030">{{ $post->title }}</h3>
                     <p>{{ $post->content }}</p>
                     <div class="inline">

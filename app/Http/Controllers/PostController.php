@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -63,10 +64,14 @@ class PostController extends Controller
 
     public function store(Request $req)
     {
-        Post::create([
+        $post = Post::create([
             'title' => $req->title,
             'content' => $req->content
         ]);
+        
+        $post->image()->save(
+            new Image(['path' => $req->image ?? 'https://via.placeholder.com/800x600.png'])
+        );
         return redirect()->route('welcome');
     }
     public function update($id, Request $req)

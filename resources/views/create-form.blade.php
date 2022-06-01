@@ -10,11 +10,15 @@
                         <legend style="margin-bottom: 20px"><u>Nouveau Post</u></legend>
                         <div class="mb-3" style="margin-bottom: 10px">
                             <label for="title" class="form-label">Titre: </label>
-                            <input type="text" name="title" id="title" maxlength="25" width="100px" class="form-control">
+                            <input type="text" name="title" id="title" maxlength="25" width="100px" class="form-control" required>
+                        </div>
+                        <div class="mb-3" style="margin-bottom: 10px">
+                            <label for="image" class="form-label">Image Url: </label>
+                            <input type="url" name="image" id="image" width="100px" class="form-control">
                         </div>
                         <div class="mb-3" style="margin-bottom: 10px">
                           <label for="content" class="form-label">Contenu: </label>
-                            <textarea class="form-control" name="content" id="content" rows="5" placeholder="Description du post" maxlength="1000"></textarea>
+                            <textarea class="form-control" name="content" id="content" rows="5" placeholder="Description du post" maxlength="1000" required></textarea>
                         </div>
                         <button class="btn btn-primary" type="submit">Enregistrer</button>
                     </form>
