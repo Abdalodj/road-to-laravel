@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -42,12 +43,16 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('create-form', ['update' => false]);
+        $tags = Tag::all();
+        return view('create-form', ['update' => false, 'tags' => $tags]);
     }
     public function toUpdate($id)
     {
         try {
             $post = Post::findOrFail($id);
+            /* foreach(̂$post->tags as $tag) {
+                array_push($list_post_tag, $tag->id);
+            } */
             return view('create-form', [
                 'post' => $post,
                 'update' => true
@@ -68,6 +73,8 @@ class PostController extends Controller
             'title' => $req->title,
             'content' => $req->content
         ]);
+
+        $post->tags()->attach(array_values($req->tags));
         
         $post->image()->save(
             new Image(['path' => $req->image ?? 'https://via.placeholder.com/800x600.png'])

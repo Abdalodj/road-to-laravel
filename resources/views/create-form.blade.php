@@ -20,6 +20,33 @@
                           <label for="content" class="form-label">Contenu: </label>
                             <textarea class="form-control" name="content" id="content" rows="5" placeholder="Description du post" maxlength="1000" required></textarea>
                         </div>
+                        <div class="row mb-3">
+                            <p for="tag" class="h4">Tags :</p>
+                            <div class="col">
+                                @foreach ($tags as $tag)
+                                    @if ($tag->id % 2 === 0)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault" name="tags[]">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        {{$tag->name}}
+                                        </label>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="col">
+                                @foreach ($tags as $tag)
+                                    @if ($tag->id % 2 !== 0)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault" name="tags[]">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        {{$tag->name}}
+                                        </label>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
                         <button class="btn btn-primary" type="submit">Enregistrer</button>
                     </form>
                 @else
@@ -32,11 +59,42 @@
                                 value="{{ $post->title }}">
                         </div>
                         <div class="mb-3" style="margin-bottom: 10px">
+                            <label for="image" class="form-label">Image Url: </label>
+                            <input type="url" name="image" id="image" width="100px" class="form-control" value="{{$post->image->path}}">
+                        </div>
+                        <div class="mb-3" style="margin-bottom: 10px">
                           <label for="content" class="form-label">Contenu: </label>
-                            <textarea name="content" id="content" cols="30" rows="5" placeholder="Description du post"
+                            <textarea class="form-control" name="content" id="content" cols="30" rows="5" placeholder="Description du post"
                                 maxlength="1000">{{ $post->content }}</textarea>
                         </div>
-                        <button type="submit">Modifier</button>
+                        <div class="row mb-3">
+                            <p for="tag" class="h4">Tags :</p>
+                            <div class="col">
+                                @foreach ($tags as $tag)
+                                    @if ($tag->id % 2 === 0)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault" name="tags[]" {{in_array($tag->id, $post->pivot)}}>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        {{$tag->name}}
+                                        </label>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="col">
+                                @foreach ($tags as $tag)
+                                    @if ($tag->id % 2 !== 0)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault" name="tags[]">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        {{$tag->name}}
+                                        </label>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Modifier</button>
                     </form>
                 @endif
             </div>

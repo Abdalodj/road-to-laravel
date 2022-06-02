@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ImageFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +14,8 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            "path" =>"https://picsum.photos/800/600?random=" . rand(1000, 12970),
-            "created_at" => now()
+            'name' => $this->faker->unique()->word(),
+            'created_at' => now()
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class FakerSeeder extends Seeder
@@ -16,11 +17,18 @@ class FakerSeeder extends Seeder
      */
     public function run()
     {
+        Tag::factory(15)->create();
+
         Post::factory(10)
-            ->has(
-                Comment::factory(rand(3, 6))
-            )->has(
-                Image::factory(1)
-            )->create();
+                ->has(
+                    Comment::factory(rand(5, 10))
+                    )->has(
+                        Image::factory(1)
+                        )->create()->each(
+                            function($post) {
+                                $randomTags = Tag::all()->random( rand(0, 10) )->pluck('id');
+                                $post->tags()->attach($randomTags, ['created_at' => now()]);
+                            }
+                        );
     }
 }
