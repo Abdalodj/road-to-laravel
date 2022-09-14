@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('articles', compact('posts'));
+        $videos = Video::all();
+        return view('articles', compact('posts', 'videos'));
     }
 
     public function show($id)

@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tag extends Model
+class Video extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function posts()
+    protected $fillable = ['title', 'url'];
+
+    /**
+     * Get all of the post's comments.
+     */
+    public function comments()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

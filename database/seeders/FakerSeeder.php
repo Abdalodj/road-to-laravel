@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class FakerSeeder extends Seeder
@@ -19,6 +20,9 @@ class FakerSeeder extends Seeder
     {
         Tag::factory(15)->create();
 
+        Video::factory(5)->has(
+            Comment::factory(rand(0, 5))
+        )->create(); 
         Post::factory(10)
                 ->has(
                     Comment::factory(rand(5, 10))
